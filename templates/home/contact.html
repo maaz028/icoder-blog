@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block contact %}active{% endblock %}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block body %}
+{% load static %}
+
+<style>
+
+.form-label
+{
+  display: block;
+  text-align: left;
+  font-weight: bold;
+  color: aliceblue;
+}
+</style>
+
+<div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+    <div class="carousel-inner">
+        <div style="background-color:black;" class="carousel-item active">
+            <img style="height: 585px; opacity:0.6;  filter: blur(8px);
+        -webkit-filter: blur(5px);" src="{% static 'home/contact.jpg' %}" class="img-fluid d-block w-100" alt="...">
+            <div  class="carousel-caption d-none d-md-block">
+               
+<h1 style=" font-family: 'Merriweather', serif;" class="heading my-2" >Contact Us</h1>
+
+<form style="width: 511px;
+margin: auto;" action="./contact_us", method="post"> {% csrf_token %}
+    <div class="container my-1">
+        <label  for="exampleInputEmail1" class="form-label">Name</label>
+        <input name="name" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter your Name" aria-describedby="emailHelp">
+        
+      </div>
+    <div class="container my-1">
+        <label for="exampleInputEmail1" class="form-label">Email</label>
+        <input name="email" type="email" class="form-control" id="exampleInputEmail1" placeholder="example@gmail.com" aria-describedby="emailHelp">
+        <div style="color: wheat;" id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+      </div>
+    <div class="container my-1">
+        <label for="exampleInputEmail1" class="form-label">Phone</label>
+        <input name="phone" type="text" class="form-control" id="exampleInputEmail1" placeholder="eg. 1111-1111111" aria-describedby="emailHelp">
+        
+      </div>
+
+
+    <div class="container my-1">
+        <label  style=" color:rgb(255, 255, 255)" for="exampleFormControlTextarea1" class="form-label">Description</label>
+        <textarea name="text" placeholder="Provide your query" name="task_details" class="form-control" id="exampleFormControlTextarea1" rows="3">{{task.task_description}}</textarea>
+      </div>
+      
+    <!-- text area ends -->
+    <div  style="text-align: center; margin:5px; margin-top: 20px;">
+    <button type="submit" class="btn btn-success">Submit</button>
+    <button type="reset" class="btn btn-danger">Reset</button>
+    </div>
+    </form>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+{% endblock %}
+
+ {% block footer %}
+  <div style="height:50px;display:flex;justify-content:center;align-items:center;" class="footerr bg-dark">
+    <span style="font-weight: bolder;" >© Designed By Maaz Khan, Inc</span>
+  </div>
+  {% endblock %}

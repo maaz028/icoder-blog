@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block about %}active{% endblock %}
+
+{% block title %}About us{% endblock %}
+
+{% block body %}
+
+{% load static %}
+<div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+    <div class="carousel-inner">
+        <div style="background-color:black;" class="carousel-item active">
+            <img style="height: 585px; opacity:0.6;  filter: blur(8px);
+        -webkit-filter: blur(5px);" src="{% static 'home/about.jpg' %}" class="img-fluid d-block w-100" alt="...">
+            <div style="margin-bottom: 150px;" class="carousel-caption d-none d-md-block">
+                <figure class="text-center">
+                    <blockquote class="blockquote">
+                        <p>
+                        <h1 style="font-family: 'Indie Flower', cursive; font-weight:30px;"> <b> About this Site</b>
+                        </h1>
+                        <h5 style="font-family: 'Indie Flower', cursive;">This website is developed using Django 3.0.
+                        </h5>
+                        <h5 style="font-family: 'Indie Flower', cursive;">Meet Maaz Khan a Software Engineer from
+                            Nowshera who is responsible for making tis site. If you have any Query regarding the icoder
+                            site you can contact us by providing your contact details we will immediately response.</h5>
+                        </p>
+                    </blockquote>
+             
+                </figure>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+{% endblock %}
+
+{% block footer %}
+<div style="height:50px;display:flex;justify-content:center;align-items:center;" class="footerr bg-dark">
+  <span style="font-weight: bolder;" >© Designed By Maaz Khan, Inc</span>
+</div>
+{% endblock %}

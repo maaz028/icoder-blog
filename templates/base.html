@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;1,900&display=swap"
+    rel="stylesheet">
+
+  <title>{% block title %} {% endblock %}</title>
+</head>
+<style>
+
+  #contact{
+    
+    border-radius: 20px;
+    background-color: #4d4d4d;
+    font-weight: bold;
+  }
+  #contact:hover{
+    
+    border-radius: 20px;
+    background-color: rgb(5, 5, 5);
+    font-weight: bold;
+  }
+
+  .footerr {
+   
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: red;
+    color: white;
+    text-align: center;
+    z-index: 2;
+  }
+</style>
+
+
+<body>
+
+
+{% block nav %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">ICoder</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link {% block home %}{% endblock %}" aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% block blog %}{% endblock %}" href="/blog">Blog</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% block about %}{% endblock %}" href="/about_us">About us</a>
+        </li>
+        <li class="nav-item">
+          <a id="contact" class="nav-link {% block contact %}{% endblock %}" href="/contact_us">Contact us</a>
+        </li>
+
+
+      </ul>s
+
+      <form method="get" action='/blog/search_data' class="d-flex">
+        <input id="search" name="search" class="form-control me-2" type="search" placeholder="Search"
+          aria-label="Search">
+        <button style="margin-right: 4px;" class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    
+
+      <!-- Button trigger modal -->
+{% if user.is_authenticated %}
+
+<li  class="nav-item dropdown">
+<a style="color: white;font-family: initial;
+font-weight: bold;
+" class="nav-link dropdown-toggle btn btn-success" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+  {{request.user}}
+</a>
+<ul style="margin-right: 10px;margin-left: -71px;" class="dropdown-menu" aria-labelledby="navbarDropdown">
+  
+  
+  <li>{% block blogout %}<a  class="dropdown-item" href="logout">Log out</a> {% endblock %}</li>
+ 
+  
+</ul>
+</li>
+
+{% else %}
+
+<button type="button" class="btn btn-danger mx-1" data-bs-toggle="modal" data-bs-target="#login">
+Login
+</button>
+<div class="modal fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Login Here.</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <form  style="width: 400px;
+    margin: auto;" action="/login" , method="post"> {% csrf_token %}
+    
+    <div class="modal-body">
+      <div class="container my-1">
+        <label for="exampleInputEmail1" class="form-label">Username</label>
+        <input name="username" type="text" class="form-control" id="exampleInputEmail1"
+        placeholder="Enter your username" aria-describedby="emailHelp" required>
+      </div>
+      <div class="container my-1">
+                          <label for="exampleInputEmail1" class="form-label">Password</label>
+                          <input name="password" type="password" class="form-control" id="exampleInputEmail1"
+                          placeholder="Enter your password" aria-describedby="emailHelp"  required>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="reset" class="btn btn-danger" >Clear</button>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button type="button" class="btn btn-danger mx-1" data-bs-toggle="modal" data-bs-target="#signup">
+                Sign up
+              </button>
+              <div class="modal fade" id="signup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Sign up Here.</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                   
+                    <form  style="width: 400px;
+                      margin: auto;" action="/signup" , method="post">  {% csrf_token %}
+                      
+                    <div class="modal-body">
+                      
+                      <div class="container my-1">
+                        <label for="exampleInputEmail1" class="form-label">First Name</label>
+                        <input name="fname" type="text" class="form-control" id="exampleInputEmail1"
+                        placeholder="Enter your Name" aria-describedby="emailHelp" required>
+                      </div>
+                      <div class="container my-1">
+                        <label for="exampleInputEmail1" class="form-label">Last Name</label>
+                        <input name="lname" type="text" class="form-control" id="exampleInputEmail1"
+                        placeholder="Enter your Name" aria-describedby="emailHelp"  required>
+                      </div>
+                      <div class="container my-1">
+                        <label for="exampleInputEmail1" class="form-label">Username</label>
+                        <input name="username" type="text" class="form-control" id="exampleInputEmail1"
+                        placeholder="Enter your Name" aria-describedby="emailHelp" required>
+                      </div>
+                      <div class="container my-1">
+                        <label for="exampleInputEmail1" class="form-label">Email</label>
+                        <input name="email" type="email" class="form-control" id="exampleInputEmail1"
+                        placeholder="example@gmail.com" aria-describedby="emailHelp" required>
+                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                      </div>
+                      <div class="container my-1">
+                        <label for="exampleInputEmail1" class="form-label">Password</label>
+                        <input name="pass1" type="password" class="form-control" id="exampleInputEmail1"
+                        placeholder="Enter your password" aria-describedby="emailHelp" required>
+                        
+                      </div>
+                      <div class="container my-1">
+                        <label for="exampleInputEmail1" class="form-label">Confirm Password</label>
+                        <input name="pass2" type="password" class="form-control" id="exampleInputEmail1"
+                        placeholder="Re-enter your password" aria-describedby="emailHelp" required>
+                        
+                      </div>
+                    
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="reset" class="btn btn-danger" >Clear</button>
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+
+      {% endif %}
+    </div>
+  </div>
+</nav>
+  
+{% endblock  %}
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="success" fill="currentColor" viewBox="0 0 16 16">
+      <path
+        d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+    </symbol>
+    <symbol id="danger" fill="currentColor" viewBox="0 0 16 16">
+      <path
+        d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+    </symbol>
+  </svg>
+  {% for message in messages %}
+
+  <div style="margin-bottom: 0px;" class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:">
+      <use xlink:href="#{{message.tags}}" />
+    </svg>
+    <span style="font-family: 'Merriweather', serif;">{{message}}</span>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+  {% endfor %}
+
+
+
+
+
+
+  {% block main %}
+
+  {% endblock %}
+  <!-- Optional JavaScript; choose one of the two! -->
+
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+    crossorigin="anonymous"></script>
+
+  <!-- Option 2: Separate Popper and Bootstrap JS -->
+  <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+    -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+
+  {% block body %}
+  {% endblock %}
+  {% block footer %}
+  
+  {% endblock %}
+</body>
+
+  
+
+
+{% block script %}
+<script>
+
+
+
+</script>
+{% endblock %}
+
+</html>

@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% block blog %}active{% endblock %}
+
+{% block title %}Blog{% endblock %}
+
+
+{% block body %}
+<style>
+  .button{
+    text-align: center;
+    margin-bottom: 100px;
+  }
+</style>
+
+
+{% if txt_query %}
+  <div>
+    <h3  style="font-family: 'Merriweather', serif;margin: 20px;color:rgb(0, 0, 0) ">Search result:\ <span style="color:red">{{txt_query}}</span></h3>
+  </div>
+{% if post|length < 1 %}
+
+<div style="margin-left:200px" >
+
+  <ul style="font-style: italic;
+  font-size: 25px;">
+    <li>Result not found.</li>
+    <li>Try a Specific keywords.</li>
+  </ul>
+  
+</div>
+{% endif %}
+
+{% endif %}
+
+
+<div style="margin: auto;" class="container my-3">
+  <div class="row mb-2">
+{% if post|length > 0 %}
+  
+
+    <div>
+      <h1 style="font-family: 'Merriweather', serif;">Featured Posts</h1>
+    </div>
+    {% endif %}
+
+      {% for item in post %}
+  
+  
+      <div class="col-md-6">
+        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+            <strong  style="font-family: 'Merriweather', serif;"class="d-inline-block mb-2 text-primary">{{item.title}}</strong>
+  
+            <div class="mb-1 text-muted">{{item.Timestamp}}</div>
+            <div id="content" style="font-family: 'Merriweather', serif;">{{item.content|safe|truncatechars:16}}</div>
+            
+            <a style="width: 149px;
+            margin-top: 10px;" href="/blog/post_view/{{item.post_id}}" class="btn btn-primary" role="button">Continue reading</a>
+          </div>
+          <div class="col-auto d-none d-lg-block">
+            <img style="height:100%;" src="/media/{{item.image}}" class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img"
+              aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+              <title>Placeholder</title>
+            
+  
+          </div>
+        </div>
+      </div>
+  
+      {% endfor %}
+    </div>
+  </div>
+  <div class="button">
+    <a href="/blog/write_blog" type="button" class="btn btn-info">Create Blog</a>
+  </div>
+{% endblock %}
+
+{% block script %}
+<script>
+  
+{% if run %}
+  document.getElementById('search').nodeValue = '';
+{% endif %}  
+
+
+</script> 
+{% endblock %}
+
+{% block footer %}
+<div style="height:50px;display:flex;justify-content:center;align-items:center; position:fixed" class="footerr bg-dark">
+  <span style="font-weight: bolder;" >© Designed By Maaz Khan, Inc</span>
+</div>
+{% endblock %}
