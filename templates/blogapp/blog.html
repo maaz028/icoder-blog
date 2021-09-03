@@ -46,24 +46,19 @@
       {% for item in post %}
   
   
-      <div class="col-md-6">
+      <div class="container">
         <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
           <div class="col p-4 d-flex flex-column position-static">
             <strong  style="font-family: 'Merriweather', serif;"class="d-inline-block mb-2 text-primary">{{item.title}}</strong>
   
             <div class="mb-1 text-muted">{{item.Timestamp}}</div>
-            <div id="content" style="font-family: 'Merriweather', serif;">{{item.content|safe|truncatechars:16}}</div>
+            <!-- <div  style="font-family: 'Merriweather', serif;"> {{item.content|safe|truncatechars:100}}</div> -->
             
-            <a style="width: 149px;
-            margin-top: 10px;" href="/blog/post_view/{{item.post_id}}" class="btn btn-primary" role="button">Continue reading</a>
+           <div> <a style="width: 149px;
+            margin-top: 10px;" href="/blog/post_view/{{item.post_id}}" class="btn btn-primary" >Continue reading</a>
           </div>
-          <div class="col-auto d-none d-lg-block">
-            <img style="height:100%;" src="/media/{{item.image}}" class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img"
-              aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-              <title>Placeholder</title>
-            
-  
           </div>
+    
         </div>
       </div>
   
@@ -71,7 +66,7 @@
     </div>
   </div>
   <div class="button">
-    <a href="/blog/write_blog" type="button" class="btn btn-info">Create Blog</a>
+    <a href="/blog/write_blog"  class="btn btn-info">Create Blog</a>
   </div>
 {% endblock %}
 

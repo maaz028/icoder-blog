@@ -80,9 +80,8 @@ def create_blog(request):
 def save_blog(request):
     if request.method == 'POST':
         title = request.POST['title']
-        image = request.POST['image']
         content = request.POST['content']
-        post_data= post(title=title, content=content, image='shop/images/'+image)
+        post_data= post(title=title, content=content)
         post_data.save()
         print(content)
         return render(request,'blogapp/blog.html')

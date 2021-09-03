@@ -33,12 +33,12 @@ margin-bottom: 18px;
             <input name="title" type="text" class="form-control" id="inputPassword" placeholder="Blog Title">
         </div>
         <div class="col-sm-10">
-            <input name="image" accept="image/*" type="file" class="form-control" id="text" placeholder="Thumbnail of blog">
+            <textarea name="simple_text" id="text" hidden cols="30" rows="10"></textarea>
         </div>
         <textarea hidden name="" id="id_content" cols="30" rows="10"></textarea>
         <textarea name="content" id="content" hidden cols="30" rows="10"></textarea>
         <button id="click" type="submit" class="btn btn-success">Success</button>
-        
+        <div id="temp" hidden></div>
     </form>
 </div>
 
@@ -76,13 +76,18 @@ margin-bottom: 18px;
         }
     })
     var value = document.getElementById('content')
-
+    
     $('#click').click(function()
     {
+        console.log('working')
         let val = tinymce.get('id_content').getContent();
-       
+        var text = {{val|safe}}
+        
         value.value = val
-        console.log(content.value)
+        console.log(text)
+        
+      
+
 
     })
 </script> 

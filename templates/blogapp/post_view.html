@@ -12,13 +12,8 @@
         <h1 style="font-family: 'Merriweather', serif;" class="fw-light">{{post.0.title}}</h1>
         <h5 style="font-family: 'Merriweather', serif;color:blue" class="fw-light">{{post.0.Timestamp}}</h5>
         <hr>
-        <h3 style="font-family: 'Merriweather', serif;">{{post.0.h1heading}}</h3>
-        <p  style="font-family: 'Merriweather', serif;"class="lead text-muted">{{post.0.h1content}}</p>
-        <h3 style="font-family: 'Merriweather', serif;">{{post.0.h2heading}}</h3>
-        <p  style="font-family: 'Merriweather', serif;"class="lead text-muted">{{post.0.h2content}}</p>
         <div>
-            <img style="border: 2px;
-            border-radius: 20px;width:100%;height:500px;" src="/media/{{post.0.image}}" alt="asdasdasd">
+            {{post.0.content|safe}}
         </div>
         <hr>
         <div>

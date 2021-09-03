@@ -7,7 +7,6 @@ class post(models.Model):
     post_id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=20)
     content = models.TextField()
-    image = models.ImageField(upload_to='shop/images', default='shop/images')
     Timestamp = models.DateField(auto_now_add=True)
    
     
